@@ -4,7 +4,7 @@ from flask_cors import CORS
 from datetime import datetime
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "http://ec2-98-80-13-141.compute-1.amazonaws.com"}})
+CORS(app, resources={r"/*": {"origins": ["http://ec2-98-80-13-141.compute-1.amazonaws.com", "http://URL_DE_TU_FRONTEND"]}})
 
 # Configuración de la base de datos
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://mi_usuario:12345@localhost/registro_usuarios'
@@ -46,10 +46,25 @@ def registrar_usuario():
 def obtener_usuarios():
     usuarios = Usuario.query.all()
     resultado = [
-        {"nombres": usuario.nombres, "apellidos": usuario.apellidos, "fecha_nacimiento": usuario.fecha_nacimiento}
+        {
+            "id": usuario.id,
+            "nombres": usuario.nombres,
+            "apellidos": usuario.apellidos,
+            "fecha_nacimiento": usuario.fecha_nacimiento.strftime('%Y-%m-%d')
+        }
         for usuario in usuarios
     ]
     return jsonify(resultado)
+
+@app.route('/usuarios/<int:user_id>', methods=['DELETE'])
+def eliminar_usuario(user_id):
+    usuario = Usuario.query.get(user_id)
+    if usuario:
+        db.session.delete(usuario)
+        db.session.commit()
+        return jsonify({"message": "Usuario eliminado exitosamente"}), 200
+    else:
+        return jsonify({"message": "Usuario no encontrado"}), 404
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
