@@ -6,7 +6,7 @@ from datetime import datetime
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": ["http://ec2-3-88-204-56.compute-1.amazonaws.com"]}})
 
-# Configuración de la base de datos
+# Configuración de la base de datos con la dns
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://mi_usuario:12345@localhost/registro_usuarios'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
