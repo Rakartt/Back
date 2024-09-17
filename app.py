@@ -4,7 +4,7 @@ from flask_cors import CORS
 from datetime import datetime
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": ["http://ec2-98-80-13-141.compute-1.amazonaws.com", "http://URL_DE_TU_FRONTEND"]}})
+CORS(app, resources={r"/*": {"origins": ["http://ec2-3-88-204-56.compute-1.amazonaws.com"]}})
 
 # Configuración de la base de datos
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://mi_usuario:12345@localhost/registro_usuarios'
