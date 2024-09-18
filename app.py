@@ -4,14 +4,14 @@ from flask_cors import CORS
 from datetime import datetime
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": ["http://ec2-3-88-204-56.compute-1.amazonaws.com"]}})
+CORS(app, resources={r"/*": {"origins": ["http://ec2-54-87-75-89.compute-1.amazonaws.com"]}})
 
 # Configuración de la base de datos con la dns
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://mi_usuario:12345@localhost/registro_usuarios'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-# Definir el modelo de la tabla Usuario
+# Definir el modelo de la tabla Usuarioo
 class Usuario(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombres = db.Column(db.String(100), nullable=False)
