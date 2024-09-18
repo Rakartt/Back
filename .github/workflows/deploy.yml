@@ -27,6 +27,5 @@ jobs:
               git reset --hard origin/master &&
               git pull origin master &&
               sudo npm i &&
-              sudo npm run build &&
-          
+              sudo npm run build
           '
