@@ -20,7 +20,7 @@ jobs:
           USER_NAME: ${{ secrets.EC2_USER }}
         run: |
           echo "$PRIVATE_KEY" | tr -d '\r' > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+          ssh -o StrictHostKeyChecking=no -i private_key Sebastian061599@gmail.com '
               cd /home/ubuntu/back &&
               git checkout dev &&
               git fetch --all &&
