@@ -25,7 +25,5 @@ jobs:
               git checkout master &&
               git fetch --all &&
               git reset --hard origin/master &&
-              git pull origin master &&
-              sudo npm i &&
-              sudo npm run build
+              git pull origin master
           '
